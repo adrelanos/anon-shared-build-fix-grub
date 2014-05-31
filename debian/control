@@ -1,0 +1,33 @@
+## This file is part of Whonix.
+## Copyright (C) 2012 - 2014 Patrick Schleizer <adrelanos@riseup.net>
+## See the file COPYING for copying conditions.
+
+Source: anon-shared-build-fix-grub
+Section: misc
+Priority: optional
+Maintainer: Patrick Schleizer <adrelanos@riseup.net>
+Build-Depends: debhelper (>= 8), faketime, git
+Homepage: https://github.com/Whonix/anon-shared-build-fix-grub
+Vcs-Browser: https://github.com/Whonix/anon-shared-build-fix-grub
+Vcs-Git: https://github.com/Whonix/anon-shared-build-fix-grub.git
+Standards-Version: 3.9.4
+
+Package: anon-shared-build-fix-grub
+Architecture: all
+Depends: ${misc:Depends}
+Description: Fixes grub in Anonymity Linux Distributions during VM build
+ Creating a bootable Virtual Machine image using grub is a difficult task.
+ After installing a new kernel in chroot, after running update-grub, the VM
+ image is no longer bootable.
+ .
+ Includes chroot-pre.d and chroot-post.d scripts to backup /boot/grub/grub.cfg
+ before modifying it. Includes a chroot-post.d script to run update-grub at the
+ end of the build process and to fix grub.cfg to make the VM image bootable.
+ .
+ Credit goes to grml-team (grml.org), (c) Michael Prokop <mika@grml.org> for
+ the actual two lines for fixing grub.cfg. It was taken from
+ /usr/sbin/grml-debootstrap, from grml-debootstrap package, which is licensed
+ GPL v2+.
+ .
+ This package does nothing when either the BARE_METAL environment variable is
+ set to "1" or when CI environment variable is set to "true".
