@@ -30,7 +30,7 @@ else
 fi
 ## }}
 
-own_filename="$(basename $0)"
+own_filename="$(basename $BASH_SOURCE)"
 for skip_script in $SKIP_SCRIPTS; do
    if [ "$skip_script" = "$own_filename" ]; then
       true "INFO: Skipping $own_filename, because SKIP_SCRIPTS includes it."
@@ -42,7 +42,7 @@ unset skip_script
 mkdir --parents /var/lib/anon-dist/grub-backup
 
 if [ "$CI" = "true" ]; then
-   true "INFO $0: Skipping, because CI detected."
+   true "INFO $BASH_SOURCE: Skipping, because CI detected."
 else
    cp /boot/grub/grub.cfg /var/lib/anon-dist/grub-backup/grub.cfg.chroot-pre
 fi

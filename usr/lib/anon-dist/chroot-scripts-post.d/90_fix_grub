@@ -30,7 +30,7 @@ else
 fi
 ## }}
 
-own_filename="$(basename $0)"
+own_filename="$(basename $BASH_SOURCE)"
 for skip_script in $SKIP_SCRIPTS; do
    if [ "$skip_script" = "$own_filename" ]; then
       true "INFO: Skipping $own_filename, because SKIP_SCRIPTS includes it."
@@ -43,7 +43,7 @@ unset skip_script
 mkdir --parents /var/lib/anon-dist/grub-backup
 
 if [ "$CI" = "true" ]; then
-   true "INFO $0: Skipping, because CI detected."
+   true "INFO $BASH_SOURCE: Skipping, because CI detected."
 else
    ## Non-deterministic on Debian Wheezy. Should work on Debian Jessie.
    #cp /boot/grub/grub.cfg /var/lib/anon-dist/grub-backup/grub.cfg.chroot-post3
@@ -59,19 +59,19 @@ fi
 ## Therefore we have to fix it here.
 
 if [ "$BARE_METAL" = "1" ]; then
-   true "INFO $0: Fixing /boot/grub/grub.cfg is not required for bare metal builds (BARE_METAL is set to 1), skipping."
+   true "INFO $BASH_SOURCE: Fixing /boot/grub/grub.cfg is not required for bare metal builds (BARE_METAL is set to 1), skipping."
 else
    if [ "$CI" = "true" ]; then
-      true "INFO $0: Skipping, because CI detected."
+      true "INFO $BASH_SOURCE: Skipping, because CI detected."
    else
-      true "INFO $0: Fixing /boot/grub/grub.cfg to work around a bug in grub when run inside chroot..."
+      true "INFO $BASH_SOURCE: Fixing /boot/grub/grub.cfg to work around a bug in grub when run inside chroot..."
 
       ## For the following two lines, credit goes to grml-team (grml.org), (c) Michael Prokop <mika@grml.org>
       ## It's taken from usr/sbin/grml-debootstrap, from grml-debootstrap package, which is licensed GPL v2+.
       sed -i "s;set root=.*;set root='(hd0,msdos1)';" /boot/grub/grub.cfg
       sed -i "s;root=[^ ]\+;root=/dev/sda1;" /boot/grub/grub.cfg
 
-      true "INFO $0: Fixed /boot/grub/grub.cfg."
+      true "INFO $BASH_SOURCE: Fixed /boot/grub/grub.cfg."
    fi
 fi
 
@@ -79,7 +79,7 @@ fi
 mkdir --parents /var/lib/anon-dist/grub-backup
 
 if [ "$CI" = "true" ]; then
-   true "INFO $0: Skipping, because CI detected."
+   true "INFO $BASH_SOURCE: Skipping, because CI detected."
 else
    cp /boot/grub/grub.cfg /var/lib/anon-dist/grub-backup/grub.cfg.chroot-post4
 fi
