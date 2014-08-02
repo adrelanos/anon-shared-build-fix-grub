@@ -72,6 +72,10 @@ else
       sed -i "s;root=[^ ]\+;root=/dev/sda1;" /boot/grub/grub.cfg
 
       true "INFO $BASH_SOURCE: Fixed /boot/grub/grub.cfg."
+
+      true "INFO $BASH_SOURCE: Deleting /boot/grub/device.map..."
+      rm --force "/boot/grub/device.map"
+      true "INFO $BASH_SOURCE: Deleted /boot/grub/device.map."
    fi
 fi
 
