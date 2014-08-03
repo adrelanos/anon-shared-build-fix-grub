@@ -58,8 +58,8 @@ fi
 ## (which will get fixed in grub 2.something).
 ## Therefore we have to fix it here.
 
-if [ "$BARE_METAL" = "1" ]; then
-   true "INFO $BASH_SOURCE: Fixing /boot/grub/grub.cfg is not required for bare metal builds (BARE_METAL is set to 1), skipping."
+if [ "$ANON_BUILD_INSTALL_TO_ROOT" = "1" ]; then
+   true "INFO $BASH_SOURCE: Fixing /boot/grub/grub.cfg is not required for bare metal builds (ANON_BUILD_INSTALL_TO_ROOT is set to 1), skipping."
 else
    if [ "$CI" = "true" ]; then
       true "INFO $BASH_SOURCE: Skipping, because CI detected."
