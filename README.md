@@ -13,8 +13,9 @@ the actual two lines for fixing grub.cfg. It was taken from
 /usr/sbin/grml-debootstrap, from grml-debootstrap package, which is licensed
 GPL v2+.
 
-This package does nothing when either the ANON_BUILD_INSTALL_TO_ROOT environment variable is
-set to "1" or when CI environment variable is set to "true".
+This package does nothing when either the ANON_BUILD_INSTALL_TO_ROOT
+environment variable is set to "1" or when CI environment variable is set to
+"true".
 
 (This package description has been [automatically](https://github.com/Whonix/whonix-developer-meta-files/blob/master/debug-steps/packaging-helper-script) extracted and mirrored from `debian/control`.)
 
