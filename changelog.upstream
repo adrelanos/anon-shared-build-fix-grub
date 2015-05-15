@@ -1,3 +1,15 @@
+commit bec926b41f7d8c2f9edfcb29ab6ead6f062076c3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun May 10 20:34:01 2015 +0000
+
+    code simplification, removed support for environment variable ANON_BUILD_INSTALL_TO_ROOT=true because anon-shared-build-fix-grub now gets only installed on required platforms
+
+commit efa22a6b2f81eabe4ce6e4feb0595c918679bcce
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Apr 30 17:55:46 2015 +0000
+
+    bumped changelog version
+
 commit ce2b2b0089534a0b034e98d28612b67ee82406a3
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Apr 28 13:43:01 2015 +0000
