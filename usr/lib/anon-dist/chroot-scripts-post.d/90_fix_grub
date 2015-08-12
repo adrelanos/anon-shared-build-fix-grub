@@ -42,13 +42,9 @@ unset skip_script
 ## just another backup
 mkdir --parents /var/lib/anon-dist/grub-backup
 
-if [ "$CI" = "true" ]; then
-   true "INFO $BASH_SOURCE: Skipping, because CI detected."
-else
-   ## Non-deterministic on Debian Wheezy. Should work on Debian Jessie.
-   #cp /boot/grub/grub.cfg /var/lib/anon-dist/grub-backup/grub.cfg.chroot-post3
-   true
-fi
+## Non-deterministic on Debian Wheezy. Should work on Debian Jessie.
+#cp /boot/grub/grub.cfg /var/lib/anon-dist/grub-backup/grub.cfg.chroot-post3
+true
 
 ## Installation of 486 kernel (in chroot-scripts-post.d 70_install_486_kernel)
 ## might have run update-grub (as part of its postinst script) and

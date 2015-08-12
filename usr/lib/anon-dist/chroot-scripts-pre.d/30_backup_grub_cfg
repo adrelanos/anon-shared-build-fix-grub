@@ -41,11 +41,7 @@ unset skip_script
 
 mkdir --parents /var/lib/anon-dist/grub-backup
 
-if [ "$CI" = "true" ]; then
-   true "INFO $BASH_SOURCE: Skipping, because CI detected."
-else
-   cp /boot/grub/grub.cfg /var/lib/anon-dist/grub-backup/grub.cfg.chroot-pre
-fi
+cp /boot/grub/grub.cfg /var/lib/anon-dist/grub-backup/grub.cfg.chroot-pre
 
 ## Explicitly "exit 0", so eventually trapped errors can be ignored.
 exit 0
