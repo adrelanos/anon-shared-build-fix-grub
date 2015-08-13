@@ -57,37 +57,29 @@ true
 ## cleanup / deprecate anon-shared-build-fix-grub package:
 ## https://phabricator.whonix.org/T340
 
-#if [ "$CI" = "true" ]; then
-   #true "INFO $BASH_SOURCE: Skipping, because CI detected."
-#else
-   #true "INFO $BASH_SOURCE: Fixing /boot/grub/grub.cfg to work around a bug in grub when run inside chroot..."
+#true "INFO $BASH_SOURCE: Fixing /boot/grub/grub.cfg to work around a bug in grub when run inside chroot..."
 
-   #if [ "$DISK_IDENTIFIER" = "" ]; then
-      #DISK_IDENTIFIER='26ada0c0-1165-4098-884d-aafd2220c2c6'
-   #fi
-
-   ## For the following two lines, credit goes to grml-team (grml.org), (c) Michael Prokop <mika@grml.org>
-   ## It's taken from usr/sbin/grml-debootstrap, from grml-debootstrap package, which is licensed GPL v2+.
-   #sed -i "s;set root=.*;set root='(hd0,msdos1)';" /boot/grub/grub.cfg
-   #sed -i "s;root=[^ ]\+;root=/dev/sda1;" /boot/grub/grub.cfg
-   ## Adjusted for Whonix.
-   #sed -i "s;root=[^ ]\+;root=UUID=$DISK_IDENTIFIER;" /boot/grub/grub.cfg
-
-   #true "INFO $BASH_SOURCE: Fixed /boot/grub/grub.cfg."
-
-   #true "INFO $BASH_SOURCE: Deleting /boot/grub/device.map..."
-   #rm --force "/boot/grub/device.map"
-   #true "INFO $BASH_SOURCE: Deleted /boot/grub/device.map."
+#if [ "$DISK_IDENTIFIER" = "" ]; then
+   #DISK_IDENTIFIER='26ada0c0-1165-4098-884d-aafd2220c2c6'
 #fi
+
+## For the following two lines, credit goes to grml-team (grml.org), (c) Michael Prokop <mika@grml.org>
+## It's taken from usr/sbin/grml-debootstrap, from grml-debootstrap package, which is licensed GPL v2+.
+#sed -i "s;set root=.*;set root='(hd0,msdos1)';" /boot/grub/grub.cfg
+#sed -i "s;root=[^ ]\+;root=/dev/sda1;" /boot/grub/grub.cfg
+## Adjusted for Whonix.
+#sed -i "s;root=[^ ]\+;root=UUID=$DISK_IDENTIFIER;" /boot/grub/grub.cfg
+
+#true "INFO $BASH_SOURCE: Fixed /boot/grub/grub.cfg."
+
+#true "INFO $BASH_SOURCE: Deleting /boot/grub/device.map..."
+#rm --force "/boot/grub/device.map"
+#true "INFO $BASH_SOURCE: Deleted /boot/grub/device.map."
 
 ## just another backup
 mkdir --parents /var/lib/anon-dist/grub-backup
 
-if [ "$CI" = "true" ]; then
-   true "INFO $BASH_SOURCE: Skipping, because CI detected."
-else
-   cp /boot/grub/grub.cfg /var/lib/anon-dist/grub-backup/grub.cfg.chroot-post4
-fi
+cp /boot/grub/grub.cfg /var/lib/anon-dist/grub-backup/grub.cfg.chroot-post4
 
 ## Explicitly "exit 0", so eventually trapped errors can be ignored.
 exit 0
